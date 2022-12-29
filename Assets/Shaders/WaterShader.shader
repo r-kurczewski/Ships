@@ -7,7 +7,7 @@ Shader "Custom/WaterShader"
         _RippleColor ("Ripple Color", Color) = (0.48, 0.81, 1, 1)
         _Speed ("Wave Speed", Float) = 0.3
         _Height ("Wave Height", Float) = 0.3
-        _Waviness("Waviness", Float) = 5
+        _Waviness ("Waviness", Float) = 0.3
         _Direction ("Wave Direction", Vector) = (1,1,0,0)
         _RippleCount ("Ripple Count", Float) = 10
         _RippleStrength ("Ripple Strength", Float) = 3
@@ -86,10 +86,14 @@ Shader "Custom/WaterShader"
             {
                 v2f OUT;
                 OUT.uv = v.uv; // pass
-                
-                _Direction = normalize(_Direction);
-                v.vertex.y += _Height * sin( (_Direction.x * v.vertex.x + _Speed * _Time[1]) * _Waviness);
-                v.vertex.y += _Height * sin( (_Direction.y * v.vertex.z + _Speed * _Time[1]) * _Waviness);
+       
+                _Direction = normalize(_Direction) * _Waviness;
+     
+                v.vertex = mul(unity_ObjectToWorld, v.vertex);
+                v.vertex.y += _Height * sin( (_Direction.x * v.vertex.x + _Speed * _Time[1]));
+                v.vertex.y += _Height * sin( (_Direction.y * v.vertex.z + _Speed * _Time[1]));
+                v.vertex = mul(unity_WorldToObject, v.vertex);
+
                 OUT.vertex = UnityObjectToClipPos(v.vertex);
                 return OUT;
             }
@@ -104,8 +108,6 @@ Shader "Custom/WaterShader"
                 col+= pow(ripple, _RippleStrength);
                 return col;
             }
-
-            
             ENDCG
         }
     }

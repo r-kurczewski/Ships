@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1303942573068724247
+--- !u!114 &-8774651520682463060
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,14 +20,15 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: 4800000, guid: 21e21b4defbf1834884fbcd8b701bb89, type: 3}
+  m_Name: PaperShip
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -89,59 +90,41 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_268b9403a34c472ba55104fc9bc71589: 0.2
-    - Vector1_2c6e9f647d614f2da4e8a618eb5dfd8d: 1
-    - Vector1_90ee19098bcb41efa3daa6c8b340fd5d: 0.2
-    - Vector1_a189f06c34da4fcda22c17698bbb7253: 1
-    - Vector1_c091d86b527441c18fb9da692f9d2fb7: 5
-    - Vector1_f3f3c84e771f491b86dd1243df4d972b: 0.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _GlossMapScale: 0
+    - _Glossiness: 0
     - _GlossinessSource: 0
-    - _GlossyReflections: 1
-    - _Height: 0.05
+    - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RippleCount: 20
-    - _RippleStrength: 3
     - _Shininess: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.7
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
-    - _Waviness: 5
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_24e7c5b9b1bd4a4496af874dfeed4148: {r: 0, g: 0.5114998, b: 1, a: 0}
-    - Color_2cf80dbd339b4676a23c8a6cfb15916f: {r: 0.070754685, g: 0.53318775, b: 1, a: 0}
-    - Color_c98f5cbdef1c4fb5838771b24d45df45: {r: 0.08018869, g: 0.52773064, b: 1, a: 0}
-    - Vector2_a26f544f5bcf45ec99c271dd9bb7312b: {r: 1, g: 1, b: 0, a: 0.1}
-    - _BaseColor: {r: 0.9811321, g: 0.9736158, b: 0.68956923, a: 1}
-    - _Color: {r: 0, g: 0.62352943, b: 1, a: 0.9019608}
-    - _Direction: {r: 1, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 0.7460378, b: 0, a: 1}
-    - _RippleColor: {r: 0.48584896, g: 0.81362045, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
