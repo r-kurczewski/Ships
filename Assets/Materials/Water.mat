@@ -110,7 +110,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossinessSource: 0
     - _GlossyReflections: 1
-    - _Height: 0.05
+    - _Height: 0.07
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -125,7 +125,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.7
+    - _Speed: 1.4
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
