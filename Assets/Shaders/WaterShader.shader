@@ -80,8 +80,6 @@ Shader "Custom/WaterShader"
             float _RippleStrength;
             float _RippleCount;
 
-            
-
             v2f vert (appdata v)
             {
                 v2f OUT;
@@ -90,8 +88,8 @@ Shader "Custom/WaterShader"
                 _Direction = normalize(_Direction) * _Waviness;
      
                 v.vertex = mul(unity_ObjectToWorld, v.vertex);
-                v.vertex.y += _Height * sin( (_Direction.x * v.vertex.x + _Speed * _Time[1]));
-                v.vertex.y += _Height * sin( (_Direction.y * v.vertex.z + _Speed * _Time[1]));
+                v.vertex.y += _Height * sin((_Direction.x * v.vertex.x + _Speed * _Time[1]));
+                v.vertex.y += _Height * sin((_Direction.y * v.vertex.z + _Speed * _Time[1]));
                 v.vertex = mul(unity_WorldToObject, v.vertex);
 
                 OUT.vertex = UnityObjectToClipPos(v.vertex);

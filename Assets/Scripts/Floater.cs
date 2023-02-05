@@ -1,47 +1,39 @@
-using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Floater : MonoBehaviour
 {
-	private const int buoyancyMultiplier = 40;
+	private const float epsilon = 0.01f;
 	private Rigidbody rb;
+	private int floatersCount;
 
 	[SerializeField]
-	private float baseHeight;
+	private float difference;
 
 	[SerializeField]
-	private float displacement;
+	private bool bouyancyActive;
 
 	[SerializeField]
-	private float submergeFactor;
+	private float floatingPower;
 
-    private void Start()
-    {
-        rb = GetComponentInParent<Rigidbody>();
-    }
+	private void Start()
+	{
+		rb = GetComponentInParent<Rigidbody>();
+		floatersCount = GetComponentsInParent<Floater>().Length;
+	}
 
 	private void FixedUpdate()
 	{
-		//ApplyGravity();
 		ApplyWaterBuoyancy();
 	}
 
 	private void ApplyWaterBuoyancy()
 	{
 		var waterHeight = WaveManager.instance.GetWaveHeight(transform.position.x, transform.position.z);
-		displacement = waterHeight + baseHeight - transform.position.y;
-		if (displacement > 0)
-		{
-			submergeFactor = Mathf.Sqrt(displacement * buoyancyMultiplier);
-		}
-		else submergeFactor = 0;
+		difference = waterHeight - transform.position.y;
 
-		rb.AddForceAtPosition(Vector3.up * submergeFactor, transform.position, ForceMode.Acceleration);
-	}
-
-	private void ApplyGravity()
-	{
-		rb.AddForce(Physics.gravity, ForceMode.Force);
+		var force = Vector3.up * floatingPower * difference;
+		rb.AddForceAtPosition(force, transform.position, ForceMode.Acceleration);
 	}
 
 	private void OnDrawGizmos()
