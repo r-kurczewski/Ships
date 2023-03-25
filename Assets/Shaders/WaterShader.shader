@@ -57,6 +57,16 @@ Shader "Custom/WaterShader"
                 }
             }
 
+            half3 ObjectScale() 
+            {
+                return half3(
+                    length(unity_ObjectToWorld._m00_m10_m20),
+                    length(unity_ObjectToWorld._m01_m11_m21),
+                    length(unity_ObjectToWorld._m02_m12_m22)
+                );
+            }
+
+
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -101,7 +111,7 @@ Shader "Custom/WaterShader"
                 float StartOffset = 10;
                 float4 col = tex2D(_MainTex, IN.uv) * _Color;
                 float _out, _cells;
-                Unity_Voronoi_float(IN.uv, _Time[1] + StartOffset, _RippleCount, _out, _cells);
+                Unity_Voronoi_float(IN.uv, _Time[1] + StartOffset, _RippleCount * ObjectScale().x, _out, _cells);
                 float4 ripple = float4(_out, _out, 0, 0) * _RippleColor;
                 col+= pow(ripple, _RippleStrength);
                 return col;

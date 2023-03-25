@@ -4,6 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
 
 	public Transform target;
+	public Vector3 targetOffset;
 
 	public float backDistance;
 	public float sideOffset;
@@ -14,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 	{
 		var targetForward = -target.forward;
 
-		var desiredCameraPosition = target.transform.position;
+		var desiredCameraPosition = target.transform.position + targetOffset;
 		desiredCameraPosition += targetForward * backDistance;
 		desiredCameraPosition.y = fixedCameraHeight;
 		desiredCameraPosition += target.right * sideOffset;

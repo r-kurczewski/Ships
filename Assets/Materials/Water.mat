@@ -110,26 +110,26 @@ Material:
     - _Glossiness: 0.5
     - _GlossinessSource: 0
     - _GlossyReflections: 1
-    - _Height: 0.11
+    - _Height: 0.6
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RippleCount: 20
-    - _RippleStrength: 3
+    - _RippleCount: 0.5
+    - _RippleStrength: 2.5
     - _Shininess: 0
     - _Smoothness: 0.5
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _Speed: 1.4
+    - _Speed: 0.8
     - _SrcBlend: 1
     - _Surface: 0
     - _UVSec: 0
-    - _Waviness: 3
+    - _Waviness: 0.3
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -138,7 +138,7 @@ Material:
     - Color_c98f5cbdef1c4fb5838771b24d45df45: {r: 0.08018869, g: 0.52773064, b: 1, a: 0}
     - Vector2_a26f544f5bcf45ec99c271dd9bb7312b: {r: 1, g: 1, b: 0, a: 0.1}
     - _BaseColor: {r: 0.9811321, g: 0.9736158, b: 0.68956923, a: 1}
-    - _Color: {r: 0.13499996, g: 0.7184507, b: 1, a: 0.8}
+    - _Color: {r: 0.13499969, g: 0.7184507, b: 1, a: 0.69803923}
     - _Direction: {r: 1, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 1, g: 0.7460378, b: 0, a: 1}

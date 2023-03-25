@@ -5,12 +5,16 @@ public class WaveManager : MonoBehaviour
 	public static WaveManager instance;
 
 	public Material waterMaterial;
+	public Transform waterMesh;
 	public bool showGizmos;
+	public float gizmosSize;
 
 	[SerializeField]
 	private float waveSpeed, waveHeight, waviness;
 	[SerializeField]
 	private Vector2 waveDirection;
+
+	public float WaterBaseHeight => waterMesh.position.y;
 
 	private void Awake()
 	{
@@ -39,7 +43,7 @@ public class WaveManager : MonoBehaviour
 
 	public float GetWaveHeight(float x, float z)
 	{
-		float y = 0;
+		float y = WaterBaseHeight;
 		var time = Time.time;
 		var direction = waveDirection.normalized * waviness;
 
@@ -59,20 +63,19 @@ public class WaveManager : MonoBehaviour
 		if (Application.isPlaying && showGizmos)
 		{
 			const int count = 10;
-			const float size = 0.01f;
 			for (int x = -count; x <= count; x++)
 			{
 				for (int z = -count; z <= count; z++)
 				{
 					if (x == 0 && z == 0) continue;
-					var pointX = transform.position.x + (float)x / count;
-					var pointZ = transform.position.z + (float)z / count;
+					var pointX = transform.position.x + x * gizmosSize * 100 / count;
+					var pointZ = transform.position.z + z * gizmosSize * 100 / count;
 					var pointPos = WavePos(pointX, pointZ);
-					Gizmos.DrawSphere(pointPos, size);
+					Gizmos.DrawSphere(pointPos, gizmosSize);
 				}
 			}
 			Gizmos.color = Color.red;
-			Gizmos.DrawSphere(transform.position, 2 * size);
+			Gizmos.DrawSphere(transform.position, 2 * gizmosSize);
 		}
 #endif
 	}
