@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetOffset: {x: 0, y: 0, z: 0}
-  backDistance: -20
+  backDistance: -4
   sideOffset: 0
-  fixedCameraHeight: 15
-  smoothSpeed: 0.1
+  fixedCameraHeight: 3
+  smoothSpeed: 0.2
