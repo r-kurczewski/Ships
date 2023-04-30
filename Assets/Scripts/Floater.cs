@@ -39,6 +39,6 @@ public class Floater : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawSphere(transform.position, 0.01f);
+		Gizmos.DrawSphere(transform.position, 0.05f);
 	}
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -20,10 +21,20 @@ public class ShipController : MonoBehaviour
 		var rotation = new Vector3(0, moveHor, 0);
 
 		rb.AddForceAtPosition(
-			movementSpeed * Time.fixedDeltaTime * movement, 
+			movementSpeed * Time.fixedDeltaTime * movement,
 			rb.transform.TransformPoint(forceSourcePosition));
 
 		rb.AddTorque(rotationSpeed * Time.fixedDeltaTime * rotation);
+
+		var sfx = GetComponent<SplashSFX>();
+		if (sfx)
+		{
+			sfx.playEngineSound = movement.magnitude > 0;
+		}
+		else
+		{
+			Debug.LogWarning("No SFX component available.", this);
+		}
 	}
 
 	private void OnDrawGizmos()
