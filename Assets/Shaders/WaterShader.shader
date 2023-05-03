@@ -14,18 +14,33 @@ Shader "Custom/WaterShader"
     }
     SubShader
     {
-       Tags { "Queue" = "Transparent" } 
+        Tags 
+        { 
+            "Queue" = "Transparent"
+            "RenderType" = "Transparent"
+            "RenderPipeline" = "UniversalPipeline" 
+        } 
 
         Pass
         {
+            Name "MainForward"
+            Tags
+            {
+                "LightMode" = "UniversalForward"
+            }
             Blend SrcAlpha OneMinusSrcAlpha
+            // ZWrite Off
 
             CGPROGRAM
+            #pragma target 3.0
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+            
             #pragma vertex vert
             #pragma fragment frag
-
+            
             #include "UnityCG.cginc"
-    
+            
             inline float2 unity_voronoi_noise_randomVector (float2 UV, float offset)
             {
                 float2x2 m = float2x2(15.27, 47.63, 99.41, 89.98);
@@ -60,9 +75,9 @@ Shader "Custom/WaterShader"
             half3 ObjectScale() 
             {
                 return half3(
-                    length(unity_ObjectToWorld._m00_m10_m20),
-                    length(unity_ObjectToWorld._m01_m11_m21),
-                    length(unity_ObjectToWorld._m02_m12_m22)
+                length(unity_ObjectToWorld._m00_m10_m20),
+                length(unity_ObjectToWorld._m01_m11_m21),
+                length(unity_ObjectToWorld._m02_m12_m22)
                 );
             }
 
@@ -94,9 +109,9 @@ Shader "Custom/WaterShader"
             {
                 v2f OUT;
                 OUT.uv = v.uv; // pass
-       
+                
                 _Direction = normalize(_Direction) * _Waviness;
-     
+                
                 v.vertex = mul(unity_ObjectToWorld, v.vertex);
                 v.vertex.y += _Height * sin((_Direction.x * v.vertex.x + _Speed * _Time[1]));
                 v.vertex.y += _Height * sin((_Direction.y * v.vertex.z + _Speed * _Time[1]));
