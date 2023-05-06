@@ -4,9 +4,13 @@ Shader "Custom/GrassShader"
     {
         [MainColor] _Color ("Color", Color) = (1,1,1,1)
         [MainTexture] _MainTex ("Texture", 2D) = "white" {}
+        _WindNoise ("Texture", 2D) = "white" {}
         _Smoothness("Smoothness", Range(0,1)) = 0
         _Occlusion("Occlusion", Range(0,1)) = 1
         _Specular("Specular", Range(0,1)) = 1
+        _WindScale("Wind Scale", float) = 1
+        _WindSpeed("Wind Speed", float) = 1
+        _WindDirection("Wind Direction", Vector) = (1,1.0,0)
     }
     SubShader
     {
@@ -38,7 +42,9 @@ Shader "Custom/GrassShader"
 
             #define SPECULAR_COLOR
 
+            #include "../GradientNoise.hlsl"
             #include "GrassShaderPass.hlsl"
+
 
             ENDHLSL
         }

@@ -17,16 +17,41 @@ struct VertexToFragment
     float3 normals : TEXCOORD3;
 };
 
-TEXTURE2D(_MainTex);
-SAMPLER(sampler_MainTex);
+TEXTURE2D(_MainTex); SAMPLER(sampler_MainTex);
+TEXTURE2D(_Windwind); SAMPLER(sampler_Windwind);
+
 float4 _Color;
 float _Smoothness;
 float _Occlusion;
 float _Specular;
 
+float _WindScale;
+float _WindSpeed;
+float _Elasticity;
+float2 _WindDirection;
+
 VertexToFragment Vertex (ToVertex IN)
 {
     VertexToFragment OUT;
+    
+    float noise;
+
+    float3 positionWS = GetVertexPositionInputs(IN.vertex).positionWS;
+    float2 windInput = positionWS + _Time[1] * _WindSpeed;
+    Unity_GradientNoise_float(windInput, _WindScale, noise);
+
+    float2 wind = float2(noise, noise);
+
+    // Move values from [0,1] to [-0.5, 0.5]
+    wind -= 0.5f; 
+
+    // Bind offset with vertex height
+    wind *= IN.vertex.y * IN.uv.g;
+
+    // Bind wind with wind direction
+    wind *= _WindDirection.xy;
+
+    IN.vertex.xz += wind;
 
     VertexPositionInputs vertInput = GetVertexPositionInputs(IN.vertex.xyz);
     VertexNormalInputs normalInput = GetVertexNormalInputs(IN.normals);
@@ -58,10 +83,6 @@ float4 Fragment (VertexToFragment IN) : SV_TARGET
     surfaceInput.occlusion = _Occlusion;
 
     half4 color = UniversalFragmentPBR(lightingInput, surfaceInput);
-
-    color.rgb = MixFog(color.rgb, lightingInput.fogCoord);
-    color.a = OutputAlpha(color.a, 0);
-
     return color;
 
 }
