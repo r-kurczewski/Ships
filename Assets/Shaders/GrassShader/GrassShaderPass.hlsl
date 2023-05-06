@@ -20,6 +20,8 @@ TEXTURE2D(_MainTex);
 SAMPLER(sampler_MainTex);
 float4 _Color;
 float _Smoothness;
+float _Occlusion;
+float _Specular;
 
 VertexToFragment Vertex (ToVertex IN)
 {
@@ -48,13 +50,15 @@ float4 Fragment (VertexToFragment IN) : SV_TARGET
     SurfaceData surfaceInput = (SurfaceData)0;
     surfaceInput.albedo = col.rgb;
     surfaceInput.alpha = col.a;
-    surfaceInput.specular = 1;
+    surfaceInput.specular = _Specular;
     surfaceInput.smoothness = _Smoothness;
+    surfaceInput.occlusion = _Occlusion;
 
-    #if UNITY_VERSION >= 202120
-        return UniversalFragmentBlinnPhong(lightingInput, surfaceInput);
-    #else
-        return UniversalFragmentBlinnPhong(lightingInput, surfaceInput.albedo, float4(surfaceInput.specular, 1), surfaceInput.smoothness, 0, surfaceInput.alpha);
-    #endif
+    half4 color = UniversalFragmentPBR(lightingInput, surfaceInput);
+
+    color.rgb = MixFog(color.rgb, lightingInput.fogCoord);
+    color.a = OutputAlpha(color.a, 0);
+
+    return float4(VertexLighting(IN.position, lightingInput.normalWS), 0);
 
 }

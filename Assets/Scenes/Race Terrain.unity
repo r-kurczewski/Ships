@@ -4800,7 +4800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1271474577
 Light:
   m_ObjectHideFlags: 0
@@ -7114,7 +7114,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: ffe718b379e632f4d8277846d96e6e4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8637135c7a842e447bdf4cbc01cfeeee, type: 2}
+      objectReference: {fileID: 2100000, guid: f9617ed03e2ac21489af1516fb1562ff, type: 2}
     - target: {fileID: 919132149155446097, guid: ffe718b379e632f4d8277846d96e6e4f, type: 3}
       propertyPath: m_Name
       value: Grass

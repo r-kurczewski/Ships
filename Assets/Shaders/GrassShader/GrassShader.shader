@@ -4,7 +4,9 @@ Shader "Custom/GrassShader"
     {
         [MainColor] _Color ("Color", Color) = (1,1,1,1)
         [MainTexture] _MainTex ("Texture", 2D) = "white" {}
-        _Smoothness("Smoothness", FLoat) = 0
+        _Smoothness("Smoothness", Range(0,1)) = 0
+        _Occlusion("Occlusion", Range(0,1)) = 1
+        _Specular("Specular", Range(0,1)) = 1
     }
     SubShader
     {
@@ -28,7 +30,8 @@ Shader "Custom/GrassShader"
                 #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #endif
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
-            #pragma mu
+
+            #pragma multi_compile _ SHADOWS_SHADOWMASK
 
             #pragma vertex Vertex
             #pragma fragment Fragment
