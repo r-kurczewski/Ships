@@ -136,8 +136,8 @@ Shader "UPRLit"
             #pragma vertex LitPassVertex
             #pragma fragment LitPassFragment
 
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
+            #include "LitInput.hlsl"
+            #include "LitForwardPass.hlsl"
             ENDHLSL
         }
 
